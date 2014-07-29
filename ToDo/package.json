@@ -1,0 +1,14 @@
+{
+  "name": "ToDo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.2.6",
+    "jade": "*",
+    "mongodb": ">= 1.3.19",
+    "mongoose": ">= 3.8.0"
+  }
+}
