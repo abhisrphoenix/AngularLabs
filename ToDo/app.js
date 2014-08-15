@@ -5,9 +5,10 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
+  ,bodyParser = require('body-parser')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  ,database = require('./config');
 
 var app = express();
 
@@ -28,7 +29,10 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/todo', routes.findAll);
+app.post('/todo', routes.saveTodo);
+app.post('/removetodo', routes.removeTodo);
+app.post('/updateTodo', routes.updateTodo);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

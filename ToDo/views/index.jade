@@ -9,11 +9,11 @@ html(lang='en', ng-app='todo')
     script(src='../javascripts/angular.min.js')
     script(src='../javascripts/angular-resource.min.js')
     script(src='../javascripts/angular-route.min.js') 
-    script(src='../javascripts/app.js')         
-    script(src='../javascripts/controller.js')         
+    script(src='../javascripts/todo.js')       
   body(ng-controller='ToDoController')
     nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
       div.navbar-header
         a.navbar-brand(href='#/todo')= title
     div.container
       div(ng-view)
+      

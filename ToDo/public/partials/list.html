@@ -18,17 +18,25 @@
 						ng-class="{warning: todo.tstatus == 'Hold' , success: todo.tstatus == 'Completed',
 				  active: todo.tstatus == 'Started', danger: todo.tstatus == 'Pending' } ">
 						<td>{{$index + 1}}</td>
-						<td>
-						{{todo.tname}}
-						</td>
+						<td>{{todo.tname}}</td>
 						<td>{{todo.tdate|date:'MM-dd-yyyy'}}</td>
-						<td>{{todo.tstatus}}</td>
+						<td ng-show="!goEdit">{{todo.tstatus}}</td>
+						<td ng-show="goEdit" id="statusTd"><select
+							class="form-control" ng-model="todo.tstatus"
+							style="width: 60%; height: 32px;"
+							ng-options="option as option for option in  ['Started','Hold','Pending','Completed']"
+							ng-change="td.updateTodo(todo.tstatus,todo);goEdit = false;">
+								<option value="--">Task status</option>
+						</select></td>
 						<td>
-							<!-- <div style="float: left" ng-click="td.updateToDo(todo, $index)" id="editDiv">
-								<img ng-src="../images/edit.png" style="cursor:pointer;"></img>
-							</div> -->
+							<div style="float: left" id="editDiv">
+								<img ng-src="../images/edit.png" style="cursor: pointer;"
+									title="Update Status" ng-click="goEdit = true"></img>
+
+							</div>
 							<div style="float: right" ng-click="td.removeToDo(todo, $index)">
-								<img ng-src="../images/remove.png"  style="cursor:pointer;"></img>
+								<img ng-src="../images/remove.png" style="cursor: pointer;"
+									title="Delete Todo"></img>
 							</div>
 						</td>
 
@@ -45,14 +53,14 @@
 							ng-options="option as option for option in  ['Started','Hold','Pending','Completed']">
 								<option value="">Task status</option>
 						</select></td>
-						<td>&nbsp;</td>
+						<td><input type="submit" class="btn active btn-success" value="Add Task" style="width:98%"></input></td>
 
 
 					</tr>
 
 				</tbody>
 			</table>
-			<input type="submit" class="btn active btn-success" value="Add Task"></input>
+			
 		</div>
 	</div>
 </form>
